@@ -1,11 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import reactLogo from '../assets/react.svg'
+import viteLogo from '../assets/vite.svg'
+import heroImg from '../assets/hero.png'
 import './App.css'
+import PostList from '../widgets/PostList/PostList'
 
 function App() {
   const [count, setCount] = useState(0)
+  const posts = [
+    { id: '1', title: 'Post #1', body: 'Это заглушка текста поста.' },
+    { id: '2', title: 'Post #2', body: 'Ещё одна заглушка для списка постов.' },
+    { id: '3', title: 'Post #3', body: 'Третий пост для проверки отрисовки.' },
+  ]
 
   return (
     <>
@@ -114,6 +120,8 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
+
+      <PostList posts={posts} />
     </>
   )
 }
