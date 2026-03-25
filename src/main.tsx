@@ -4,11 +4,14 @@ import './index.css'
 import Header from './widgets/LayoutHeader/Header.tsx'
 import App from './app/App.tsx'
 import Footer from './widgets/LayoutFooter/Footer.tsx'
+import { ThemeProvider } from './shared/lib/theme'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Header />
-    <App />
-    <Footer />
+    <ThemeProvider>
+      <Header />
+      <App />
+      <Footer />
+    </ThemeProvider>
   </StrictMode>,
 )
