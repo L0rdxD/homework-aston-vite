@@ -1,0 +1,32 @@
+.comment-list {
+  margin-top: 12px;
+}
+
+.comment-list__toggle {
+  margin: 8px 0 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: var(--text-h);
+}
+
+.comment-list__list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.comment-list__item {
+  margin: 8px 0;
+}
+
+.comment-list__author {
+  font-weight: 600;
+  margin: 0;
+}
+
+.comment-list__body {
+  margin: 4px 0 0;
+}
+

@@ -6,17 +6,24 @@ import './App.css'
 import PostList from '../widgets/PostList/PostList'
 import Button from '../shared/ui/Button/Button'
 import Modal from '../shared/ui/Modal'
-
-
+import { useGetCommentsQuery, useGetPostsQuery } from '../shared/api/jsonplaceholderApi'
 
 function App() {
   const [count, setCount] = useState(0)
   const [isAboutOpen, setIsAboutOpen] = useState(false)
-  const posts = [
-    { id: '1', title: 'Post #1', body: 'Это заглушка текста поста.' },
-    { id: '2', title: 'Post #2', body: 'Ещё одна заглушка для списка постов.' },
-    { id: '3', title: 'Post #3', body: 'Третий пост для проверки отрисовки.' },
-  ]
+  const {
+    data: posts = [],
+    isLoading: isPostsLoading,
+    isError: isPostsError,
+  } = useGetPostsQuery()
+  const {
+    data: comments = [],
+    isLoading: isCommentsLoading,
+    isError: isCommentsError,
+  } = useGetCommentsQuery()
+
+  const isDataLoading = isPostsLoading || isCommentsLoading
+  const error = isPostsError || isCommentsError ? 'Failed to load data' : null
   const docsLinks = [
     { href: 'https://vite.dev/', label: 'Explore Vite', icon: <img className="logo" src={viteLogo} alt="" /> },
     { href: 'https://react.dev/', label: 'Learn more', icon: <img className="button-icon" src={reactLogo} alt="" /> },
@@ -99,10 +106,20 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
 
-      <PostList posts={posts} />
+      {error ? (
+        <p role="alert">
+          {error}
+        </p>
+      ) : null}
+      <PostList isLoading={isDataLoading} posts={posts} comments={comments} />
 
-      <Modal isOpen={isAboutOpen} title="О проекте" onClose={handleCloseAbout}>
-        <p>Это учебный проект на Vite + React с базовой архитектурой и переиспользуемыми UI-компонентами.</p>
+      <Modal isOpen={isAboutOpen} onClose={handleCloseAbout} ariaLabel="О проекте">
+        <Modal.Header>О проекте</Modal.Header>
+        <Modal.Body>
+          <p>
+            Это учебный проект на Vite + React с базовой архитектурой и переиспользуемыми UI-компонентами.
+          </p>
+        </Modal.Body>
       </Modal>
     </>
   )

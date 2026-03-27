@@ -1,15 +1,24 @@
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, type ReactElement, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import './Modal.css'
+import styles from './Modal.module.css'
+import ModalBody from './ModalBody'
+import ModalFooter from './ModalFooter'
+import ModalHeader from './ModalHeader'
 
 type ModalProps = {
   isOpen: boolean
-  title: string
   onClose: () => void
+  ariaLabel?: string
   children: ReactNode
 }
 
-export default function Modal({ isOpen, title, onClose, children }: ModalProps) {
+type ModalComponent = ((props: ModalProps) => ReactElement | null) & {
+  Header: typeof ModalHeader
+  Body: typeof ModalBody
+  Footer: typeof ModalFooter
+}
+
+const Modal = (({ isOpen, ariaLabel = 'Modal', onClose, children }: ModalProps) => {
   useEffect(() => {
     if (!isOpen) {
       return
@@ -33,18 +42,23 @@ export default function Modal({ isOpen, title, onClose, children }: ModalProps) 
   }
 
   return createPortal(
-    <div className="modal-overlay" role="presentation" onClick={onClose}>
+    <div className={styles['modal-overlay']} role="presentation" onClick={onClose}>
       <div
-        className="modal-content"
+        className={styles['modal-content']}
         role="dialog"
         aria-modal="true"
-        aria-label={title}
+        aria-label={ariaLabel}
         onClick={(event) => event.stopPropagation()}
       >
-        <h3>{title}</h3>
-        <div className="modal-body">{children}</div>
+        {children}
       </div>
     </div>,
     document.body,
   )
-}
+}) as ModalComponent
+
+Modal.Header = ModalHeader
+Modal.Body = ModalBody
+Modal.Footer = ModalFooter
+
+export default Modal

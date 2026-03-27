@@ -1,9 +1,9 @@
-import './Footer.css'
+import styles from './Footer.module.css'
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer>
+    <footer className={styles.footer}>
       <small>© {year} Homework • built with Vite + React</small>
     </footer>
   )
