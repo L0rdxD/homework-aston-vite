@@ -1,6 +1,6 @@
 /* eslint react-refresh/only-export-components: 0 */
 import { useCallback, useMemo, useState } from 'react'
-import type { Comment } from '../CommentList/ui/CommentList'
+import type { Comment } from '../../entities/comment/model/types'
 import CommentList from '../CommentList/ui/CommentList'
 import { type Post } from '../../entities/post/ui/PostCard'
 import PostCard from '../../entities/post/ui/PostCard'

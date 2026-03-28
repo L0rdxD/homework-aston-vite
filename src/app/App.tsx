@@ -6,7 +6,8 @@ import './App.css'
 import PostList from '../widgets/PostList/PostList'
 import Button from '../shared/ui/Button/Button'
 import Modal from '../shared/ui/Modal'
-import { useGetCommentsQuery, useGetPostsQuery } from '../shared/api/jsonplaceholderApi'
+import { useGetCommentsQuery } from '../entities/comment/api/commentsApi'
+import { useGetPostsQuery } from '../entities/post/api/postsApi'
 
 function App() {
   const [count, setCount] = useState(0)

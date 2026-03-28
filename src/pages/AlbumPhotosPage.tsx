@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useGetAlbumPhotosQuery } from '../shared/api/jsonplaceholderApi'
+import { useGetAlbumPhotosQuery } from '../entities/album/api/albumsApi'
 
 export default function AlbumPhotosPage() {
   const { id } = useParams<{ id: string }>()

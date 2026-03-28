@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom'
-import { useGetUserTodosQuery } from '../shared/api/jsonplaceholderApi'
+import { useGetUserTodosQuery } from '../entities/todo/api/todosApi'
+import { useGetUserByIdQuery } from '../entities/post/api/postsApi'
 import UserTabs from '../widgets/UserTabs/UserTabs'
 
 export default function UserTodosPage() {
   const { id } = useParams<{ id: string }>()
+  useGetUserByIdQuery(id ?? '', { skip: !id })
   const { data: todos = [], isLoading, isError } = useGetUserTodosQuery(id ?? '', { skip: !id })
 
   if (!id) {

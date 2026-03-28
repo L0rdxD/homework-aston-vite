@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useGetPostByIdQuery } from '../shared/api/jsonplaceholderApi'
+import { useGetPostByIdQuery } from '../entities/post/api/postsApi'
 
 export default function PostDetailsPage() {
   const { id } = useParams<{ id: string }>()
