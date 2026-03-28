@@ -1,4 +1,5 @@
-import { useGetCommentsQuery, useGetPostsQuery } from '../../../../shared/api/jsonplaceholderApi'
+import { useGetCommentsQuery } from '../../../../entities/comment/api/commentsApi'
+import { useGetPostsQuery } from '../../../../entities/post/api/postsApi'
 
 export default function usePosts() {
   const {

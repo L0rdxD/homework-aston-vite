@@ -1,13 +1,8 @@
 import { useCallback, useState } from 'react'
 import styles from './CommentList.module.css'
+import type { Comment } from '../../../entities/comment/model/types'
 
-export type Comment = {
-  id: string
-  postId: string
-  name: string
-  email: string
-  body: string
-}
+export type { Comment }
 
 type CommentListProps = {
   comments: Comment[]

@@ -1,9 +1,10 @@
 import { Link, useParams } from 'react-router-dom'
-import { useGetUserPostsQuery } from '../shared/api/jsonplaceholderApi'
+import { useGetUserByIdQuery, useGetUserPostsQuery } from '../entities/post/api/postsApi'
 import UserTabs from '../widgets/UserTabs/UserTabs'
 
 export default function UserPostsPage() {
   const { id } = useParams<{ id: string }>()
+  useGetUserByIdQuery(id ?? '', { skip: !id })
   const { data: posts = [], isLoading, isError } = useGetUserPostsQuery(id ?? '', { skip: !id })
 
   if (!id) {
