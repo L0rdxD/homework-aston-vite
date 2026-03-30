@@ -1,10 +1,5 @@
 import styles from './PostCard.module.css'
-
-export type Post = {
-  id: string
-  title: string
-  body: string
-}
+import type { Post } from '../model/types'
 
 export type PostCardProps = {
   post: Post

@@ -1,12 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { jsonPlaceholderBaseQuery } from '../../../shared/api/baseQuery'
-
-export type Todo = {
-  id: number
-  userId: number
-  title: string
-  completed: boolean
-}
+import type { Todo } from '../model/types'
 
 type ApiTodo = {
   id: number

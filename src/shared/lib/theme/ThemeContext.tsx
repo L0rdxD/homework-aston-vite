@@ -1,5 +1,5 @@
 /* eslint react-refresh/only-export-components: 0 */
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react'
 
 type Theme = 'light' | 'dark'
 
@@ -22,7 +22,9 @@ function getInitialTheme(): Theme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+type ThemeProviderProps = PropsWithChildren
+
+export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
   useEffect(() => {

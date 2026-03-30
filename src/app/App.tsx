@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, type MouseEventHandler } from 'react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '../assets/vite.svg'
 import heroImg from '../assets/hero.png'
@@ -36,7 +36,10 @@ function App() {
     { href: 'https://bsky.app/profile/vite.dev', label: 'Bluesky', iconId: 'bluesky-icon' },
   ]
 
-  const handleOpenAbout = () => setIsAboutOpen(true)
+  const handleIncrement: MouseEventHandler<HTMLButtonElement> = () => {
+    setCount((currentCount) => currentCount + 1)
+  }
+  const handleOpenAbout: MouseEventHandler<HTMLButtonElement> = () => setIsAboutOpen(true)
   const handleCloseAbout = () => setIsAboutOpen(false)
 
   return (
@@ -53,7 +56,7 @@ function App() {
             Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
           </p>
         </div>
-        <Button className="counter" onClick={() => setCount((currentCount) => currentCount + 1)}>
+        <Button className="counter" onClick={handleIncrement}>
           Count is {count}
         </Button>
         <Button onClick={handleOpenAbout}>О проекте</Button>

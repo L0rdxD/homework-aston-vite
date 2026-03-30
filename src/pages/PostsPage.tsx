@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type MouseEventHandler } from 'react'
 import PostList from '../widgets/PostList/PostList'
 import usePosts from '../features/PostList/model/hooks/usePosts'
 import Button from '../shared/ui/Button/Button'
@@ -9,8 +9,9 @@ export default function PostsPage() {
   const [isAboutOpen, setIsAboutOpen] = useState(false)
   const { posts, comments, isLoading, error } = usePosts()
 
-  const handleIncrement = () => setCount((currentCount) => currentCount + 1)
-  const handleOpenAbout = () => setIsAboutOpen(true)
+  const handleIncrement: MouseEventHandler<HTMLButtonElement> = () =>
+    setCount((currentCount) => currentCount + 1)
+  const handleOpenAbout: MouseEventHandler<HTMLButtonElement> = () => setIsAboutOpen(true)
   const handleCloseAbout = () => setIsAboutOpen(false)
 
   if (error) {

@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import type { EntityState } from '@reduxjs/toolkit'
-import type { Post } from '../../ui/PostCard'
+import type { Post } from '../types'
 import { postsApi } from '../../api/postsApi'
 
 const postsAdapter = createEntityAdapter<Post>()

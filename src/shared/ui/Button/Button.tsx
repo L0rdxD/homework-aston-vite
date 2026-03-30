@@ -1,9 +1,7 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 import styles from './Button.module.css'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: ReactNode
-}
+type ButtonProps = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>
 
 export default function Button({ children, type = 'button', className = '', ...props }: ButtonProps) {
   return (

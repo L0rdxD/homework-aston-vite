@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { jsonPlaceholderBaseQuery } from '../../../shared/api/baseQuery'
-import type { Post } from '../ui/PostCard'
+import type { Post } from '../model/types'
 import type { User } from '../../user/model/types'
 import { commentsApi } from '../../comment/api/commentsApi'
 
