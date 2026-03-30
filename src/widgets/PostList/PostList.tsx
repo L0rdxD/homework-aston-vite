@@ -2,7 +2,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import type { Comment } from '../../entities/comment/model/types'
 import CommentList from '../CommentList/ui/CommentList'
-import { type Post } from '../../entities/post/ui/PostCard'
+import type { Post } from '../../entities/post/model/types'
 import PostCard from '../../entities/post/ui/PostCard'
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter'
 import filterByLength from '../../features/PostLengthFilter/lib/filterByLength'

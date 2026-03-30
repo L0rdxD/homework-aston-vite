@@ -1,16 +1,15 @@
-import { useEffect, type ReactElement, type ReactNode } from 'react'
+import { useEffect, type MouseEventHandler, type PropsWithChildren, type ReactElement } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './Modal.module.css'
 import ModalBody from './ModalBody'
 import ModalFooter from './ModalFooter'
 import ModalHeader from './ModalHeader'
 
-type ModalProps = {
+type ModalProps = PropsWithChildren<{
   isOpen: boolean
   onClose: () => void
   ariaLabel?: string
-  children: ReactNode
-}
+}>
 
 type ModalComponent = ((props: ModalProps) => ReactElement | null) & {
   Header: typeof ModalHeader
@@ -19,6 +18,14 @@ type ModalComponent = ((props: ModalProps) => ReactElement | null) & {
 }
 
 const Modal = (({ isOpen, ariaLabel = 'Modal', onClose, children }: ModalProps) => {
+  const handleOverlayClick: MouseEventHandler<HTMLDivElement> = () => {
+    onClose()
+  }
+
+  const handleContentClick: MouseEventHandler<HTMLDivElement> = (event) => {
+    event.stopPropagation()
+  }
+
   useEffect(() => {
     if (!isOpen) {
       return
@@ -42,13 +49,13 @@ const Modal = (({ isOpen, ariaLabel = 'Modal', onClose, children }: ModalProps) 
   }
 
   return createPortal(
-    <div className={styles['modal-overlay']} role="presentation" onClick={onClose}>
+    <div className={styles['modal-overlay']} role="presentation" onClick={handleOverlayClick}>
       <div
         className={styles['modal-content']}
         role="dialog"
         aria-modal="true"
         aria-label={ariaLabel}
-        onClick={(event) => event.stopPropagation()}
+        onClick={handleContentClick}
       >
         {children}
       </div>

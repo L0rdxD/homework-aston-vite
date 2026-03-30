@@ -1,24 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { jsonPlaceholderBaseQuery } from '../../../shared/api/baseQuery'
-
-export type Album = {
-  id: number
-  userId: number
-  title: string
-}
+import type { Album } from '../model/types'
+import type { Photo } from '../../photo/model/types'
 
 type ApiAlbum = {
   id: number
   userId: number
   title: string
-}
-
-export type Photo = {
-  id: number
-  albumId: number
-  title: string
-  url: string
-  thumbnailUrl: string
 }
 
 type ApiPhoto = {

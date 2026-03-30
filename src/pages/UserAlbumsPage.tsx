@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useGetUserAlbumsQuery } from '../entities/album/api/albumsApi'
 import { useGetUserByIdQuery } from '../entities/post/api/postsApi'
 import UserTabs from '../widgets/UserTabs/UserTabs'
+import ItemList from '../shared/ui/ItemList'
 
 export default function UserAlbumsPage() {
   const { id } = useParams<{ id: string }>()
@@ -18,13 +19,11 @@ export default function UserAlbumsPage() {
       <UserTabs userId={id} />
       {isLoading ? <p>Loading albums...</p> : null}
       {isError ? <p role="alert">Failed to load albums.</p> : null}
-      <ul>
-        {albums.map((album) => (
-          <li key={album.id}>
-            <Link to={`/albums/${album.id}/photos`}>{album.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <ItemList
+        items={albums}
+        getKey={(album) => album.id}
+        renderItem={(album) => <Link to={`/albums/${album.id}/photos`}>{album.title}</Link>}
+      />
     </section>
   )
 }

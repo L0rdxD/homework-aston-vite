@@ -1,9 +1,7 @@
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import styles from './Modal.module.css'
 
-type ModalFooterProps = {
-  children: ReactNode
-}
+type ModalFooterProps = PropsWithChildren
 
 export default function ModalFooter({ children }: ModalFooterProps) {
   return <div className={styles['modal-footer']}>{children}</div>

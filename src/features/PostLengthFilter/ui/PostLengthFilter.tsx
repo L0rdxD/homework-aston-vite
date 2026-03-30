@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useState, type ChangeEventHandler, type FormEventHandler, type FocusEventHandler } from 'react'
 import styles from './PostLengthFilter.module.css'
 
 type PostLengthFilterProps = {
@@ -9,14 +9,18 @@ type PostLengthFilterProps = {
 export default function PostLengthFilter({ minLength, onChangeMinLength }: PostLengthFilterProps) {
   const [draftMinLength, setDraftMinLength] = useState(minLength === null ? '' : String(minLength))
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDraftMinLength(event.target.value)
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
     const next = Number.parseInt(draftMinLength, 10)
     onChangeMinLength(Number.isFinite(next) ? Math.max(0, next) : null)
+  }
+
+  const handleFocus: FocusEventHandler<HTMLInputElement> = () => {
+    setDraftMinLength('')
   }
 
   return (
@@ -32,7 +36,7 @@ export default function PostLengthFilter({ minLength, onChangeMinLength }: PostL
           min={0}
           value={draftMinLength}
           onChange={handleChange}
-          onFocus={() => setDraftMinLength('')}
+          onFocus={handleFocus}
           className={styles.input}
         />
       </label>

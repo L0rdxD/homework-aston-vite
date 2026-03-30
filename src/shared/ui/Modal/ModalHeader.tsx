@@ -1,9 +1,7 @@
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import styles from './Modal.module.css'
 
-type ModalHeaderProps = {
-  children: ReactNode
-}
+type ModalHeaderProps = PropsWithChildren
 
 export default function ModalHeader({ children }: ModalHeaderProps) {
   return <h3 className={styles['modal-header']}>{children}</h3>

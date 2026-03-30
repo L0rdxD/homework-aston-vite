@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, type MouseEventHandler } from 'react'
 import styles from './CommentList.module.css'
 import type { Comment } from '../../../entities/comment/model/types'
 
@@ -13,7 +13,7 @@ export default function CommentList({ comments }: CommentListProps) {
 
   const commentsCount = comments.length
 
-  const handleToggle = useCallback(() => {
+  const handleToggle: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
     setIsOpen((prev) => !prev)
   }, [])
 
